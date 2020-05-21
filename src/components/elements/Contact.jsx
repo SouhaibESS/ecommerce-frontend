@@ -158,7 +158,7 @@ export class Contact extends Component {
                     </div>
                     <div className="row">
                         <div className="col-lg-12">
-                            <form id="contactForm" name="sentMessage" noValidate="novalidate" onSubmit={this.handleSubmit}>
+                            <form onSubmit={this.handleSubmit}>
                                 <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">

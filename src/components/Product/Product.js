@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { API_URL } from '../../config'
 
 import Container from 'react-bootstrap/Container'
@@ -7,13 +7,20 @@ import Col from 'react-bootstrap/Col'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Carousel from 'react-bootstrap/Carousel'
 
+import OrderForm from '../elements/OrderForm'
+
 const Product = ({match: {params: {productId}}}) => {
     
     const [product, setProduct] = useState({})
+    const [formShow, setFormShow] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetchProduct()
     },[])
+    
+    useEffect(() => {
+    },[loading])
 
     const fetchProduct = async () => {
         const productURL = `${API_URL}/product/${productId}`
@@ -21,6 +28,7 @@ const Product = ({match: {params: {productId}}}) => {
         const product = await fetchedProduct.json()
         
         setProduct(product.data)
+        setLoading(false)
     }
 
     const {id, name, price, description, rating, images, quantity} = product
@@ -49,9 +57,9 @@ const Product = ({match: {params: {productId}}}) => {
                         <Carousel interval={2000}>
                             {
                                 images &&
-                                images.map((image) => ( 
-                                        <Carousel.Item>
-                                            <img
+                                images.map((image, key) => ( 
+                                        <Carousel.Item key={key} >
+                                            <img 
                                                 className="d-block w-100"
                                                 src={image.image_path}
                                             />
@@ -75,14 +83,24 @@ const Product = ({match: {params: {productId}}}) => {
                                 <p style={{fontSize:'1.5em'}} className="h2 mt-2 text-muted float-left">Price : {price}$</p>
                             </Col>
                             <Col xs={12} md={8}>
-                                <p style={{fontSize:'1.3em'}}  class=" mt-2 ml-3 font-weight-light text-justify">
+                                <p style={{fontSize:'1.3em'}}  className=" mt-2 ml-3 font-weight-light text-justify">
                                     {description}
                                 </p>
                             </Col>
                             <Col xs={12} md={8}>
                                 <div className="ml-2 row d-flex justify-content-center mt-2 float-left">
-                                    <button className="btn btn-primary w-55 text-uppercase js-scroll-trigger">Order Now</button>
+                                    <button 
+                                        onClick={() => setFormShow(true)}
+                                        className="btn btn-primary w-55 text-uppercase js-scroll-trigger"
+                                    >Order Now</button>
                                 </div>
+                                <OrderForm 
+                                    show={formShow} 
+                                    onHide={() => setFormShow(false)} 
+                                    productQuantity={quantity} 
+                                    productId={id}
+                                    productPrice={price}
+                                />
                             </Col>
                         </Row>
                     </Col>
