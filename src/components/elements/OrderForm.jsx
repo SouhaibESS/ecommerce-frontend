@@ -19,23 +19,25 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
     const [errors ,setErrors] = useState({})
     const [formValid ,setFormValid] = useState(false)
     const [totalPrice ,setTotalPrice] = useState(productPrice)
+    const [showForm ,setShowForm] = useState(true)
 
     useEffect(() => {
-        console.log('productPrice', productPrice)
-        console.log('name', name)
         setErrors({})
+        setTotalPrice(productPrice)
     }, [])
+    
 
     useEffect(() => {
-        console.log('formValid', formValid)
+        setTotalPrice(quantity * productPrice)
+    },[quantity])
+
+    useEffect(() => {
+        // console.log('productPrice', productPrice)
     }, [formValid, errors, nameValid, emailValid, phoneValid, quantityValid])
 
     const handelChange = (e) => {
         const {name, value} = e.target
         validateData(name, value)
-        if(name === 'quantity') {
-            setTotalPrice(quantity * productPrice)
-        }
     }
 
     const validateData = (name, value) => {
@@ -105,7 +107,6 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
                     })
                     setQuantityValid(true)
                     setQuantity(value)
-                    setTotalPrice(quantity * productPrice)
                 }
                 break;    
             default:
@@ -123,9 +124,9 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
             client_name: name,
             client_phone_number: phone,
             client_email: email,
-            ordered_quantity: quantity
+            ordered_quantity: quantity,
+            total_price: totalPrice
         }
-        console.log('data', data)
         data = JSON.stringify(data)
 
         try {
@@ -146,15 +147,19 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
                 setErrors(errors)
             } else {
                 setErrors({})
+                setShowForm(false)
+                setFormValid(false)
             }
         } catch (error) {
             console.error('Error: ', error)
         }
     }
 
+    console.log('mn west form showForm', showForm)
+
     return (
         <Modal 
-            show={show}
+            show={show && showForm}
             onHide={onHide}
             size="md"
             centered
@@ -240,7 +245,7 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
                                 className="btn btn-decrement btn-outline-secondary" 
                                 style={{minWidth: '2.5rem'}}
                                 onClick={() => {
-                                    quantity > 1 && setQuantity(quantity - 1)
+                                    quantity > 1 && setQuantity(parseInt(quantity) - 1)
                                 }}
                             >
                                 <strong>-</strong>
@@ -259,7 +264,7 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
                                 className="btn btn-decrement btn-outline-secondary" 
                                 style={{minWidth: '2.5rem'}}
                                 onClick={() => {
-                                    quantity < productQuantity && setQuantity(quantity + 1)
+                                    quantity < productQuantity && setQuantity(parseInt(quantity) + 1)
                                 }}
                             >
                                 <strong>+</strong>
@@ -275,7 +280,7 @@ const OrderForm = ({show, onHide, productQuantity, productId, productPrice}) => 
                     </div>
                     <Row>
                         <Col>
-                            Total Price : {totalPrice}$
+                            Total Price : {totalPrice ? totalPrice : productPrice }$
                         </Col>
                     </Row>
                     <div className="clearfix"></div>

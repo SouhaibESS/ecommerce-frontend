@@ -11,17 +11,17 @@ const Footer = () => {
                 <div className="col-md-6">
                     <ul className="list-inline social-buttons">
                         <li className="list-inline-item">
-                            <a href="https://twitter.com/es_souhaib">
+                            <a target="_blank" href="https://twitter.com/es_souhaib">
                                 <i className="fa fa-twitter"></i>
                             </a>
                         </li>
                         <li className="list-inline-item">
-                            <a href="https://www.facebook.com/souhaib.essarghini/">
+                            <a target="_blank" href="https://www.facebook.com/souhaib.essarghini/">
                                 <i className="fa fa-facebook-f"></i>
                             </a>
                         </li>
                         <li className="list-inline-item">
-                            <a href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
+                            <a target="_blank" href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
                                 <i className="fa fa-linkedin" ></i>
                             </a>
                         </li>

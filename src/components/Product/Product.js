@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { API_URL } from '../../config'
 
+import NavBar from '../elements/NavBar'
+import Footer from '../elements/Footer'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -14,6 +17,8 @@ const Product = ({match: {params: {productId}}}) => {
     const [product, setProduct] = useState({})
     const [formShow, setFormShow] = useState(false)
     const [loading, setLoading] = useState(true)
+
+    console.log('formShow', formShow)
 
     useEffect(() => {
         fetchProduct()
@@ -50,63 +55,67 @@ const Product = ({match: {params: {productId}}}) => {
     }
 
     return ( 
-        <Jumbotron fluid={true}>
-            <Container>
-                <Row>
-                    <Col xs={6} md={4}>
-                        <Carousel interval={2000}>
-                            {
-                                images &&
-                                images.map((image, key) => ( 
-                                        <Carousel.Item key={key} >
-                                            <img 
-                                                className="d-block w-100"
-                                                src={image.image_path}
-                                            />
-                                        </Carousel.Item>
-                                   )
-                                )
-                            }
-                        </Carousel>
-                    </Col>
-                    <Col xs={12} md={8} fluid>
-                        <Row>
-                            <Col xs={12} md={8} fluid>
-                                <h1 style={{fontSize:'3.5em'}} className='float-left'>{name}</h1>
-                            </Col>
-                            <Col xs={12} md={8} fluid>
-                                <p className='float-left'>
-                                    {renderRatingStars()}
-                                </p>
-                            </Col>
-                            <Col xs={12} md={8}>
-                                <p style={{fontSize:'1.5em'}} className="h2 mt-2 text-muted float-left">Price : {price}$</p>
-                            </Col>
-                            <Col xs={12} md={8}>
-                                <p style={{fontSize:'1.3em'}}  className=" mt-2 ml-3 font-weight-light text-justify">
-                                    {description}
-                                </p>
-                            </Col>
-                            <Col xs={12} md={8}>
-                                <div className="ml-2 row d-flex justify-content-center mt-2 float-left">
-                                    <button 
-                                        onClick={() => setFormShow(true)}
-                                        className="btn btn-primary w-55 text-uppercase js-scroll-trigger"
-                                    >Order Now</button>
-                                </div>
-                                <OrderForm 
-                                    show={formShow} 
-                                    onHide={() => setFormShow(false)} 
-                                    productQuantity={quantity} 
-                                    productId={id}
-                                    productPrice={price}
-                                />
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
-        </Jumbotron>
+        <>
+            <NavBar />
+            <Jumbotron fluid={true}>
+                <Container>
+                    <Row>
+                        <Col xs={6} md={4}>
+                            <Carousel interval={2000}>
+                                {
+                                    images &&
+                                    images.map((image, key) => ( 
+                                            <Carousel.Item key={key} >
+                                                <img 
+                                                    className="d-block w-100"
+                                                    src={image.image_path}
+                                                />
+                                            </Carousel.Item>
+                                        )
+                                    )
+                                }
+                            </Carousel>
+                        </Col>
+                        <Col xs={12} md={8} fluid>
+                            <Row>
+                                <Col xs={12} md={8} fluid>
+                                    <h1 style={{fontSize:'3.5em'}} className='float-left'>{name}</h1>
+                                </Col>
+                                <Col xs={12} md={8} fluid>
+                                    <p className='float-left'>
+                                        {renderRatingStars()}
+                                    </p>
+                                </Col>
+                                <Col xs={12} md={8}>
+                                    <p style={{fontSize:'1.5em'}} className="h2 mt-2 text-muted float-left">Price : {price}$</p>
+                                </Col>
+                                <Col xs={12} md={8}>
+                                    <p style={{fontSize:'1.3em'}}  className=" mt-2 ml-3 font-weight-light text-justify">
+                                        {description}
+                                    </p>
+                                </Col>
+                                <Col xs={12} md={8}>
+                                    <div className="ml-2 row d-flex justify-content-center mt-2 float-left">
+                                        <button 
+                                            onClick={() => setFormShow(true)}
+                                            className="btn btn-primary w-55 text-uppercase js-scroll-trigger"
+                                        >Order Now</button>
+                                    </div>
+                                    <OrderForm 
+                                        show={formShow} 
+                                        onHide={() => setFormShow(false)} 
+                                        productQuantity={quantity} 
+                                        productId={id}
+                                        productPrice={price}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
+            </Jumbotron>
+            <Footer />
+        </>
     )
 }
 

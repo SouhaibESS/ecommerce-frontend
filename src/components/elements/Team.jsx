@@ -1,5 +1,9 @@
 import React from 'react'
+
+import NavBar from './NavBar'
 import { Contact } from './Contact'
+import Footer from './Footer'
+
 import img1 from '../../assets/img/team/ana1.jpeg'
 import img2 from '../../assets/img/team/ana2.JPG'
 import img3 from '../../assets/img/team/ana3.jpg'
@@ -7,6 +11,7 @@ import img3 from '../../assets/img/team/ana3.jpg'
 const Team = () => {
     return (
         <>
+            <NavBar />
             <section className="bg-light page-section" id="team">
                 <div className="container">
                     <div className="row">
@@ -23,17 +28,17 @@ const Team = () => {
                                 <p className="text-muted">Lead Designer</p>
                                 <ul className="list-inline social-buttons">
                                     <li className="list-inline-item">
-                                        <a href="https://twitter.com/es_souhaib">
+                                        <a target="_blank" target="_blank" href="https://twitter.com/es_souhaib">
                                         <i className="fa fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item">
-                                        <a href="https://www.facebook.com/souhaib.essarghini/">
+                                        <a target="_blank" href="https://www.facebook.com/souhaib.essarghini/">
                                         <i className="fa fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item">
-                                        <a href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
+                                        <a target="_blank" href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
                                         <i className="fa fa-linkedin"></i>
                                         </a>
                                     </li>
@@ -47,17 +52,17 @@ const Team = () => {
                                 <p className="text-muted">Lead Marketer</p>
                                 <ul className="list-inline social-buttons">
                                     <li className="list-inline-item">
-                                        <a href="https://twitter.com/es_souhaib">
+                                        <a target="_blank" href="https://twitter.com/es_souhaib">
                                         <i className="fa fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item">
-                                        <a href="https://www.facebook.com/souhaib.essarghini/">
+                                        <a target="_blank" href="https://www.facebook.com/souhaib.essarghini/">
                                         <i className="fa fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item">
-                                        <a href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
+                                        <a target="_blank" href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
                                         <i className="fa fa-linkedin"></i>
                                         </a>
                                     </li>
@@ -71,17 +76,17 @@ const Team = () => {
                                 <p className="text-muted">Lead Developer</p>
                                 <ul className="list-inline social-buttons">
                                     <li className="list-inline-item">
-                                        <a href="https://twitter.com/es_souhaib">
+                                        <a target="_blank" href="https://twitter.com/es_souhaib">
                                         <i className="fa fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item">
-                                        <a href="https://www.facebook.com/souhaib.essarghini/">
+                                        <a target="_blank" href="https://www.facebook.com/souhaib.essarghini/">
                                         <i className="fa fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item">
-                                        <a href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
+                                        <a target="_blank" href="https://www.linkedin.com/in/souhaib-essarghini-1aa5681a4/">
                                         <i className="fa fa-linkedin"></i>
                                         </a>
                                     </li>
@@ -98,7 +103,7 @@ const Team = () => {
             </section>
 
             <Contact />
-
+            <Footer />
         </>
     )
 }

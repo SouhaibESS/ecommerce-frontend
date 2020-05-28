@@ -1,6 +1,8 @@
 import React , { Component } from 'react'
 import axios from 'axios'
+import NavBar from '../elements/NavBar'
 import Header from '../elements/Header'
+import Footer from '../elements/Footer'
 import ProductsGrid from '../elements/ProductsGrid'
 import { Contact } from '../elements/Contact'
 import { API_URL } from '../../config'
@@ -56,9 +58,11 @@ export class Home extends Component {
         const { laoding , products, moreProducts } =  this.state
         return (
             <>
+                <NavBar />
                 <Header />
                 <ProductsGrid laoding={laoding} products={products} moreProducts={moreProducts} handleClick={this.handleClick.bind(this)} />
                 <Contact />
+                <Footer />
             </>
         )
     }
