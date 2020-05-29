@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 
+import { login } from '../../utils'
+
 const LoginForm = () => {
 
     let history = useHistory()
@@ -77,6 +79,7 @@ const LoginForm = () => {
                     password: 'incorrect password'
                 })
             } else {
+                login(response.token)
                 history.push('/dashboard')
             }
             

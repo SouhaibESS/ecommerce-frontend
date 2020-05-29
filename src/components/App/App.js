@@ -2,8 +2,11 @@ import React  from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
 } from 'react-router-dom'
+
+import { isLoggedIn } from '../../utils'
 
 import { Home } from '../Home/Home'
 import Product from '../Product/Product'
@@ -18,11 +21,43 @@ const App = () => {
         <div className='App'>
             <Router>
                 <Switch>
-                        <Route path='/' component={Home} exact/>
-                        <Route path='/products/:productId'  component={Product}/>
-                        <Route path='/team' component={Team} exact />
-                        <Route path='/login' component={LoginForm} exact />
-                        <Route path='/dashboard' component={Dashboard} exact />
+                        <Route 
+                            path='/' 
+                            component={Home} 
+                            exact
+                        />
+                        <Route 
+                            path='/products/:productId'  
+                            component={Product}
+                        />
+                        <Route 
+                            path='/team' 
+                            component={Team} 
+                        />
+                        <Route 
+                            path='/login' 
+                            component={LoginForm} 
+                        />
+                        <Route 
+                            path='/dashboard' 
+                            render={(props) => {
+                                if(isLoggedIn()) 
+                                    return <Dashboard {...props} page={'HomeDashboard'} /> 
+                                
+                                return <Redirect to='/' />
+                            }} 
+                            exact 
+                        />
+                        <Route 
+                            path='/dashboard/products' 
+                            render={(props) => {
+                                if(isLoggedIn()) 
+                                    return <Dashboard {...props} page={'Products'} /> 
+                                
+                                return <Redirect to='/' />
+                            }} 
+                            exact 
+                        />
                         <Route component={NoMatch} />
                 </Switch>
             </Router>

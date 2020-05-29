@@ -1,0 +1,28 @@
+$theme-colors: (
+  "info": tomato,
+  "danger": teal,
+  "custom": #e0b62c,
+);
+.link {
+  color: #000000;
+  text-align: left;
+  padding: 15px !important;
+}
+.link:hover {
+  color: #4558be;
+  background-color: #b2b5c7;
+  opacity: 0.7;
+  text-decoration: none !important;
+}
+.statics {
+  width: 97% !important;
+}
+.auth {
+  background: none;
+  border: none !important;
+}
+.auth:active {
+  border: none !important;
+}
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";
